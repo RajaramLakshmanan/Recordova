@@ -13,6 +13,7 @@
 - (void)getNotification:(CDVInvokedUrlCommand*)command;
 - (void)deleteNotification:(CDVInvokedUrlCommand*)command;
 - (void)getDeeplinkingData: (CDVInvokedUrlCommand *)command;
+- (void)getQRCodeData: (CDVInvokedUrlCommand *)command;
 
 //- (void)onNotificationPayloadReceiver:(CDVInvokedUrlCommand*)command;
 
