@@ -180,32 +180,30 @@
     
     NSString *qrUrl = [command.arguments firstObject];
     
-    [REiosHandler handleqr:url successHandler: ^(NSDictionary<NSString *,id> * dataDict) {
-          NSError * err;
-          CDVPluginResult* pluginResult = nil;
-          @try {
-              
-              NSData * jsonData = [NSJSONSerialization  dataWithJSONObject:dataDict options:0 error:&err];
-              NSString * dataString = [[NSString alloc] initWithData:jsonData   encoding:NSUTF8StringEncoding];
-              NSLog(@"handleqr data received %@",dataString);
-              pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:dataString];
-              
-          } @catch (NSException *exception) {
-              NSLog(@"handleqr data json exception %@",exception);
-              pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_JSON_EXCEPTION messageAsString:[exception reason]];
-          }
-          
-          [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-          
-      } failure:^(NSString * error) {
-          NSLog(@"handleqr data error %@",error);
-          CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error];
-          [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-      }];
+    [REiosHandler handleQrLinkWithUrl:qrUrl successHandler:^(NSDictionary<NSString *,id> * dataDict) {
+        NSError * err;
+        CDVPluginResult* pluginResult = nil;
+        @try {
+            
+            NSData * jsonData = [NSJSONSerialization  dataWithJSONObject:dataDict options:0 error:&err];
+            NSString * dataString = [[NSString alloc] initWithData:jsonData   encoding:NSUTF8StringEncoding];
+            NSLog(@"handleqr data received %@",dataString);
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:dataString];
+            
+        } @catch (NSException *exception) {
+            NSLog(@"handleqr data json exception %@",exception);
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_JSON_EXCEPTION messageAsString:[exception reason]];
+        }
+        
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    } failureHandler:^(NSString * error) {
+        NSLog(@"handleqr data error %@",error);
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
     
-    
+   
 }
-
 //- (void)onNotificationPayloadReceiver:(CDVInvokedUrlCommand*)command {
 //
 //    CDVPluginResult *pluginResult = nil;
