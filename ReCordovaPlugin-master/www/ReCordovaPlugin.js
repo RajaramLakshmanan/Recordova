@@ -50,6 +50,12 @@ module.exports.notificationPayLoadReceiver = function(arg0, success, error) {
 	exec(success, error, 'ReCordovaPlugin', 'notificationPayLoadReceiver', [ arg0 ]);
 };
 
+module.exports.getQRCodeData = function(arg0, success, error) {
+	exec(success, error, 'ReCordovaPlugin', 'getQRCodeData', [ arg0 ]);
+};
+
+
+
 
 
 

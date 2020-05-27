@@ -1,6 +1,6 @@
 {
-	"name": "recordovaplugin",
-	"version": "1.0.31",
+	"name": "rescordovaplugin",
+	"version": "1.0.1",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -8,7 +8,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/ResulticksInc/ReCordovaPlugin.git"
+		"url": "git+https://github.com/RajaramLakshmanan/Recordova.git"
 	},
 	"keywords": [ "recordovaplugin" ],
 	"author": "ResultickInc",
